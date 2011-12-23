@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-16"?>
+<InventoryItem>
+  <Name>Sloodle Rezzer 2.0.12-alpha rev 1 (2011-10-22 20:25)</Name>
+  <ID>30acf7bf-d446-4fdb-9d57-65ea1936951b</ID>
+  <InvType>6</InvType>
+  <CreatorUUID>ospa:n=Avatar Classroom</CreatorUUID>
+  <CreationDate>1324614386</CreationDate>
+  <Owner>a819d3a6-0cf5-445c-94a9-c5ba84285bb1</Owner>
+  <Description>Put your site name here.</Description>
+  <AssetType>6</AssetType>
+  <AssetID>8a8d79c5-0a0d-45eb-907b-41ceda6bcb15</AssetID>
+  <SaleType>0</SaleType>
+  <SalePrice>0</SalePrice>
+  <BasePermissions>581633</BasePermissions>
+  <CurrentPermissions>581633</CurrentPermissions>
+  <EveryOnePermissions>0</EveryOnePermissions>
+  <NextPermissions>581632</NextPermissions>
+  <Flags>0</Flags>
+  <GroupID>00000000-0000-0000-0000-000000000000</GroupID>
+  <GroupOwned>False</GroupOwned>
+</InventoryItem>
