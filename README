@@ -1,0 +1,17 @@
+This repo is for the IAR archive of the SLOODLE rezzer.
+
+The contents of the IAR archive is stored in decompressed form.
+To import it into an OpenSim grid, you need to archive it with tar / gzip.
+
+Example:
+
+# Go into the directory containing the IAR. 
+cd iar/
+
+# Archive the contents as a file called /tmp/sloodle.iar.
+# NB OpenSim may choke on the archive unless the files are archived in the specified order.
+tar zcvf /tmp/sloodle.iar archive.xml inventory/ assets/
+
+# In the OpenSim console, you should now be able to load the archive:
+load iar Your Avatar / yourpassw0rd /tmp/sloodle.iar
+
