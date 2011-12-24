@@ -338,10 +338,9 @@ state check_moodle
         httpcheckmoodle = NULL_KEY;
         // Check the status code
         if (status != 200) {
-            sloodle_translation_request(SLOODLE_TRANSLATE_SAY, [0], "httperror:code", [status], NULL_KEY, "");
-            return;
+                sloodle_error_code(SLOODLE_TRANSLATE_SAY, NULL_KEY,status); //send message to error_message.lsl
+           return;
         }
-        
         // Split the response into lines and get the status line info
         list lines = llParseStringKeepNulls(body, ["\n"], []);
         integer numlines = llGetListLength(lines);
@@ -812,5 +811,3 @@ state idle
     }
 }
 
-// Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: lsl/sloodle_setup_web.lsl 

@@ -1,0 +1,143 @@
+Linden text version 2
+{
+LLEmbeddedItems version 1
+{
+count 1
+{
+ext char index 0
+	inv_item	0
+	{
+		item_id	a15011f9-3add-f3ff-74d2-5ba63c28ed21
+		parent_id	f7658828-21d2-4fec-bc4d-b76d8c8449f8
+	permissions 0
+	{
+		base_mask	7fffffff
+		owner_mask	7fffffff
+		group_mask	7fffffff
+		everyone_mask	7fffbfff
+		next_owner_mask	7fffffff
+		creator_id	2102f5ab-6854-4ec3-aec5-6cd6233c31c6
+		owner_id	2102f5ab-6854-4ec3-aec5-6cd6233c31c6
+		last_owner_id	00000000-0000-0000-0000-000000000000
+		group_id	00000000-0000-0000-0000-000000000000
+	}
+		asset_id	82af2152-8d1d-6002-841d-537944c010f3
+		type	notecard
+		inv_type	notecard
+		flags	00000000
+	sale_info	0
+	{
+		sale_type	not
+		sale_price	10
+	}
+		name	SLOODLE FREEMAIL BLOGGER|
+		desc	2009-04-06 13:30:11 note card|
+		creation_date	1239057040
+	}
+}
+}
+Text length 9677
+SLOODLE TOOLBAR 0.4
+************************************************************************************************
+For updated information, please visit our wiki: http://slisweb.sjsu.edu/sl/index.php/Sloodle_Toolbar
+
+Summary
+************************************************************************************************
+The Sloodle Toolbar is a 'HUD object' (Heads-Up Display). This means it will be displayed as an interface item on your screen, with buttons you can interact with. The latest version has 3 main functions: blog, gestures, and AviLister.
+
+NOTE
+************************************************************************************************
+A NEW BLOGGING TOOL - FREEMAIL BLOGGER was released in the 0.4 version of the Sloodle Set, and is an alternate way to submit blogs than this SLOODLE Toolbar.  For more information - see: 􀀀
+
+Compatibility
+************************************************************************************************
+The Sloodle Toolbar is independent of the other Sloodle tools, and its compatibility is shown in the table below. You can see the version number of the Toolbar in the object name, such as "Sloodle Toolbar v1.2", where "1.2" is the version number. For Sloodle and Moodle versions, see Sloodle Versions.
+
+DETAILS
+************************************************************************************************
+The main purpose of the Toolbar is to let you write blog entries to the Moodle site. To do that, make sure the "Blog HUD" is visible (if not, click the "Blog" tab at the top). To start your entry, click the button which says "Click here to start". You then chat your entry subject and press enter. Next, chat your blog body, and press enter. As of version 1.3, you can use as many chat messages as you like to write your blog body, up to a total limit of 1000 characters -- you will see the progress meter at the bottom fill up as you chat more.
+
+When you have chatted the subject and body, they should both appear on the Toolbar itself. The ends of the messages may be cut-off, because not much text can fit, but they should be visible. You can then press "Save changes" to send your entry to the Moodle site, or "Cancel" to reset it.
+
+
+
+Advanced options
+************************************************************************************************
+When you have mastered the basics of writing a blog entry, there are two advanced options you can use. The first is the channel number, which is available on version 1.3 and later -- you can click "Channel" to select which chat channel you would like to use. Select 0 for the normal public chat, and 1 or 2 if you would like privacy. To chat on channels 1 or 2, start your chat messages with /1 or /2, like this:
+
+/1 This is my blog entry
+
+The other advanced option is only available as of version 1.4 -- it is the visibility setting. You will see "Site", "Public" or "Private" displayed on the blog HUD... click it to get a menu of options, and select which visibility setting you want. "Site" will make your entry visible to anybody registered on the site, "Public" can be viewed by anybody (including guest users of the site), and "Private" can only be viewed by you.
+
+
+Viewing
+************************************************************************************************
+The default visibility setting for blog entries is "site". You can view "site" and "public" entries by visiting your Moodle site's frontpage, and putting "/blog" after it. For example, the Sloodle.org blog entries are visible here:
+
+http://www.sloodle.org/blog
+
+To view private blog entries, login to your Moodle site, and click your name at the top-right to visit your user profile. You should then see a tab at the top saying "Blog" -- click it to read your private (or 'draft') entries.
+
+
+Gestures
+************************************************************************************************
+The classroom gestures is a series of icons. If you cannot see them on the Toolbar, then click the "Classroom Gestures" tab at the top. Click on each icon to perform that gesture/animation. Note that some animation are toggled (click once to turn on, and once again to turn off), while others will happen once when you click them.
+
+
+AviLister
+************************************************************************************************
+The "AviLister" button was introduced in version 1.3, and when clicked, it will scan the local area for avatars (up to a maximum of 16). It will then send the list of avatar names to your Moodle site, and request their Moodle names. (In many cases, the Moodle name will be the real name). The association of avatar to Moodle names will then be chatted back to you (in owner chat, so that only you can see it).
+
+The AviLister button should be visible at the top-right of your Toolbar. If it is red, then it has not been configured yet, or your Moodle site does not support it (this will happen with Sloodle 0.2 or earlier when using Toolbar v1.3). When the AviLister button is white, it is ready for use, and when it is blue/purple, it is scanning the area.
+
+
+Minimizing
+************************************************************************************************
+If you find that the Toolbar takes up too much space on your screen, you can minimize it by clicking on the box with a dash through it at the top right. It will then be reduced to a simple Sloodle logo (white with 2 circles). Click that logo to make the Toolbar visible again. (Note: this feature is only available as of Toolbar v1.3).
+
+Reset
+************************************************************************************************
+When using Toolbar v1.4, it is sometimes necessary to reset the Toolbar completely. For example, if you want to change the URL (especially if you are/were using a URL in the description field). A complete reset can be achieved by clicking the cross button at the top right (it should be a red box with a white cross through it). Note that you will need to re-authorise the Toolbar after this. Before attempting it, try detaching and re-attaching it.
+
+
+Configuration
+************************************************************************************************
+The configuration method for the Toolbar has changed between versions, so please be sure to select which version is right for you:
+Version 1.4
+
+Sloodle Versions: 0.3 (?)
+
+Unlike all the other Sloodle tools, the Toolbar needs to be configured for each individual user. As of Sloodle 0.3, a new concept, known as user-centric authorization, has been developed. This allows each user to authorize their own toolbar, without having to rely on a teacher to pre-configure it. However, it is useful if the teacher does a small amount of pre-configuration.
+
+Optionally, before giving copies of the Toolbar out to students, the teacher can right-click it in his/her inventory, and select "Properties". It is advisable to enter a name which identifies your school or class in the name of the Toolbar, and then enter the URL of your Moodle site in the object's description. This should start with "http" but not have a trailing slash (/) at the end. Press Enter and close the properties window. The Toolbar can then be given out.
+
+
+When an avatar first attaches the Toolbar, it will check its Description field for the URL. If it is not present, then the user will need to chat it on channel 0 or 1. Thereafter, it will give the user a URL which s/he should load in their browser and login to Moodle if necessary. It will then report that the Toolbar has been authorised. Go back to Second Life, and wait a few seconds, or click an empty area on the surface of the Toolbar, and it should detect that it has been authorized, and configure itself ready for use.
+
+Note: as part of the process, the Toolbar will also register your avatar if necessary.
+
+
+Known Problems
+************************************************************************************************
+If you use an avatar which has been registered to a Moodle account, but then attempt to authorise your Toolbar using a different Moodle login, then the page in your browser will report the following error: "Expected parameter 'sloodleuuid'". This issue error message will hopefully be made more meaningful in future releases!
+
+
+ Versions 1.2 and 1.3
+************************************************************************************************
+Sloodle Versions: 0.2, 0.21 (?)
+
+These versions of the Toolbar rely on a basic 'sloodle_config' notecard, containing the URL of the Moodle site and the site's Prim Password. Due to a glitch in the scripts, it also requires a course number, but that value is ignored. The contents of the notecard should as follows:
+
+sloodleserverroot|http://www.sloodle.org
+sloodlepwd|123456789
+sloodle_courseid|1
+
+Replace the URL and prim password with the relevant values for your site, or use the notecard setup page on your site to generate all the text for you. Place the notecard into the Toolbar, making sure the notecard is called "sloodle_config". Ensure Copy/Modify permissions on the notecard are disabled, and that the Modify permission on the Toolbar itself is disabled, to prevent people stealing your prim password. You can then give out copies of the Toolbar to your students.
+
+
+Earlier Versions
+************************************************************************************************
+Sloodle Versions: 0.1x (?)
+
+Old versions of the Toolbar relied on their own name/format of configuration notecard. You are highly advised not to use a Sloodle installation as old as this, but if you need to, then please request the information on our forums at Sloodle.org. }
+ 
