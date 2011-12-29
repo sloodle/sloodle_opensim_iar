@@ -15,3 +15,23 @@ tar zcvf /tmp/sloodle.iar archive.xml inventory/ assets/
 # In the OpenSim console, you should now be able to load the archive:
 load iar Your Avatar / yourpassw0rd /tmp/sloodle.iar
 
+
+To recreate this iar and update the Git repo, do the following:
+
+# Make a directory in inventory - recommend iar/export/sloodle
+
+# Make a directory on the disk that the opensim user can write to - recommend /tmp/iar/export
+mkdir /tmp/iar/export
+
+# In the OpenSim console, export the iar: 
+save iar Your Avatar /iar/export/sloodle/ yourpassw0rd /tmp/iar/export/sloodle.iar
+
+# Remove the contents of the current iar directory, and unpack the new iar instead.
+rm -rf iar/*
+cd iar
+tar zxvf /tmp/iar/export/sloodle.iar
+
+# Tell Git to accept all the changes, commit and push
+git add .
+git commit -a
+git push 
