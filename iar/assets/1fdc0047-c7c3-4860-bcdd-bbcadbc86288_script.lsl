@@ -10,6 +10,7 @@
 // Contributors:
 //  - <unknown>
 //  - Peter R. Bloomfield
+//  - Fumi.Iseki for OpenSim
 //
 //////////
 //
@@ -39,10 +40,7 @@ string RESTORE_BUTTON = "restore_button";
 string HELP_BUTTON = "help_button";
 
 // Name of the help notecard
-string HELP_NOTECARD = "Sloodle Toolbar Help";
-
-// Is the toolbar flipped over? (i.e. is it on gestures?)
-integer flipped = 0;
+string HELP_NOTECARD = "Sloodle Lite Toolbar Help";
 // Is the toolbar currently hidden ('minimized')?
 integer hidden = 0;
 // Sound to be played when the toolbar is touched
@@ -105,12 +103,12 @@ default
         if(touchSound != ""){
             llPreloadSound(touchSound); 
         }
-        llSetLocalRot(ZERO_ROTATION); // added for OpenSim
+        hidden = 0;
+        llSetLocalRot(ZERO_ROTATION);
     }
     
     on_rez(integer param)
     {
-        llSetRot(ZERO_ROTATION);
         llResetScript();
     }
     
@@ -129,8 +127,7 @@ default
             // If the restore button was pressed, then unhide it. Otherwise, ignore the touch.
             if (name == RESTORE_BUTTON) {
                 hidden = 0;
-                if (flipped) llSetLocalRot(llEuler2Rot(<0,PI,0>));
-                else llSetLocalRot(ZERO_ROTATION); // modified for OpenSim
+                llSetLocalRot(ZERO_ROTATION);
             }
             return;
         }
@@ -138,7 +135,7 @@ default
         if (name == MINIMIZE_BUTTON) {
             // Hide it
             hidden = 1;
-            llSetLocalRot(llEuler2Rot(<0,PI * 0.5,0>)); // modified for OpenSim
+            llSetLocalRot(llEuler2Rot(<0,PI * 0.5,0>));
             return;
         }
 
@@ -146,21 +143,7 @@ default
         if (hidden == 1) return;
         
         // So what else was touched?
-        if (name == llGetObjectName()) {
-            // The toggle tabs were touched
-            // Toggle the rotation between gestures and blog
-            if (!flipped)
-            {
-                llSetLocalRot(llEuler2Rot(<0,PI,0>)); // modified for OpenSim
-                flipped = 1;
-            }
-            else
-            {
-                llSetLocalRot(ZERO_ROTATION); // modified for OpenSim
-                flipped = 0;
-            }
-            return;
-        } else if (name == HELP_BUTTON) {
+        if (name == HELP_BUTTON) {
             // The help button was touched - give the help notecard
             if (llGetInventoryType(HELP_NOTECARD) == INVENTORY_NOTECARD) {
                 llGiveInventory(llDetectedKey(0), HELP_NOTECARD);
@@ -208,3 +191,5 @@ default
     }
 }
 
+// Please leave the following line intact to show where the script lives in Subversion:
+// SLOODLE LSL Script Subversion Location: toolbar/lsl/toolbar-menu.lsl.os

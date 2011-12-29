@@ -345,7 +345,7 @@ state ready
             
             // Make sure the HTTP response was OK
             if (status != 200) {
-               sloodle_error_code(SLOODLE_TRANSLATE_SAY, NULL_KEY,status); //send message to error_message.lsl
+                sloodle_error_code(SLOODLE_TRANSLATE_SAY, NULL_KEY,status); //send message to error_message.lsl
                 return;
             }
             
@@ -494,3 +494,5 @@ state ready
     }
 }
 
+// Please leave the following line intact to show where the script lives in Subversion:
+// SLOODLE LSL Script Subversion Location: mod/choice-1.0/sloodle_mod_choice-1.0.lsl 

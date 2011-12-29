@@ -142,17 +142,17 @@ default
     {
         // Check the channel
         if (num == SLOODLE_CHANNEL_OBJECT_DIALOG) {
-            // Reset message?
-            if (msg == "do:reset") {
-                llResetScript();
-                return;
-            }
+        	// Reset message?
+			if (msg == "do:reset") {
+				llResetScript();
+				return;
+			}
         
             // Split the message into lines
             list lines = llParseString2List(msg, ["\n"], []);
             integer numlines = llGetListLength(lines);
-            integer i = 0;
-            for (; i < numlines; i++) {
+           integer i;
+            for ( i=0 ; i < numlines; i++) {
                 isconfigured = sloodle_handle_command(llList2String(lines, i));
             }
             
@@ -206,8 +206,8 @@ state ready
     
     link_message(integer sender_num, integer num, string sval, key kval)
     {
-        if (sender_num == llGetLinkNumber()) return;
-        if (num == SLOODLE_CHANNEL_OBJECT_DIALOG && sval == "do:reset") llResetScript();
+    	if (sender_num == llGetLinkNumber()) return;
+    	if (num == SLOODLE_CHANNEL_OBJECT_DIALOG && sval == "do:reset") llResetScript();
     }
 }
 
@@ -243,8 +243,8 @@ state searching
         string arglist = "sloodleuuid=" + (string)llGetOwner();
         arglist += "&sloodlepwd=" + sloodlepwd;
         arglist += "&sloodleavnamelist=";
-        integer i = 0;
-        for (; i < total_number; i++) {
+        integer i;
+        for ( i=0 ; i < total_number; i++) {
             if (i > 0) arglist += "|";
             arglist += llEscapeURL(llDetectedName(i));
         }
@@ -296,8 +296,8 @@ state searching
         sloodle_translation_request(SLOODLE_TRANSLATE_OWNER_SAY, [], "numidentified", [(numlines - 1)], NULL_KEY, "avilister");
         
         // Go through each line
-        integer i = 1;
-        for (; i < numlines; i++) {
+        integer i;
+        for ( i=1 ; i < numlines; i++) {
             // Split this line into separate fields
             list fields = llParseStringKeepNulls(llList2String(lines, i), ["|"], []);
             // Make sure there are enough fields
@@ -326,7 +326,9 @@ state searching
     
     link_message(integer sender_num, integer num, string sval, key kval)
     {
-        if (sender_num == llGetLinkNumber()) return;
-        if (num == SLOODLE_CHANNEL_OBJECT_DIALOG && sval == "do:reset") llResetScript();
+    	if (sender_num == llGetLinkNumber()) return;
+    	if (num == SLOODLE_CHANNEL_OBJECT_DIALOG && sval == "do:reset") llResetScript();
     }
 }
+// Please leave the following line intact to show where the script lives in Subversion:
+// SLOODLE LSL Script Subversion Location: toolbar/lsl/sloodle_avilister.lsl 

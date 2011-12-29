@@ -8,7 +8,7 @@
 // Contributors:
 //  Peter R. Bloomfield
 
-
+integer SLOODLE_CHANNEL_ERROR_TRANSLATION_REQUEST=-1828374651; // this channel is used to send status codes for translation to the error_messages lsl script
 integer SLOODLE_CHANNEL_OBJECT_DIALOG = -3857343;
 string SLOODLE_EOF = "sloodleeof";
 integer SLOODLE_CHANNEL_AVATAR_DIALOG = 1001;
@@ -52,6 +52,21 @@ string SLOODLE_TRANSLATE_DIALOG = "dialog";         // Recipient avatar should b
 string SLOODLE_TRANSLATE_LOAD_URL = "loadurl";      // Recipient avatar should be identified in link message keyval. 1 output parameter, containing the URL.
 string SLOODLE_TRANSLATE_HOVER_TEXT = "hovertext";  // 2 output parameters: colour <r,g,b>, and alpha value
 string SLOODLE_TRANSLATE_IM = "instantmessage";             // Recipient avatar should be identified in link message keyval. No output parameters.
+
+
+//functions
+/******************************************************************************************************************************
+* sloodle_error_code - 
+* Author: Paul Preibisch
+* Description - This function sends a linked message on the SLOODLE_CHANNEL_ERROR_TRANSLATION_REQUEST channel
+* The error_messages script hears this, translates the status code and sends an instant message to the avuuid
+* Params: method - SLOODLE_TRANSLATE_SAY, SLOODLE_TRANSLATE_IM etc
+* Params:  avuuid - this is the avatar UUID to that an instant message with the translated error code will be sent to
+* Params: status code - the status code of the error as on our wiki: http://slisweb.sjsu.edu/sl/index.php/Sloodle_status_codes
+*******************************************************************************************************************************/
+sloodle_error_code(string method, key avuuid,integer statuscode){
+            llMessageLinked(LINK_SET, SLOODLE_CHANNEL_ERROR_TRANSLATION_REQUEST, method+"|"+(string)avuuid+"|"+(string)statuscode, NULL_KEY);
+}
 
 // Send a translation request link message
 sloodle_translation_request(string output_method, list output_params, string string_name, list string_params, key keyval, string batch)
@@ -219,6 +234,7 @@ state check_moodle
             return;
         } else if (statuscode <= 0) {
             sloodle_translation_request(SLOODLE_TRANSLATE_OWNER_SAY, [0], "failedcheckcompatibility", [], NULL_KEY, "");
+            sloodle_error_code(SLOODLE_TRANSLATE_SAY, NULL_KEY,statuscode); //send message to error_message.lsl
             return;
         }
         
@@ -318,6 +334,7 @@ state auth_object
         // Check the statuscode
         if (statuscode <= 0) {
             sloodle_translation_request(SLOODLE_TRANSLATE_OWNER_SAY, [0], "objectauthfailed:code", [statuscode], NULL_KEY, "");
+            sloodle_error_code(SLOODLE_TRANSLATE_SAY, NULL_KEY,statuscode); //send message to error_message.lsl
             return;
         }
         
@@ -417,7 +434,8 @@ state check_auth
             sloodle_debug("Not authorised yet...");
             return;
         } else if (statuscode <= 0) {
-            sloodle_translation_request(SLOODLE_TRANSLATE_OWNER_SAY, [], "servererror", [statuscode], NULL_KEY, "");
+            //sloodle_translation_request(SLOODLE_TRANSLATE_OWNER_SAY, [], "servererror", [statuscode], NULL_KEY, "");
+            sloodle_error_code(SLOODLE_TRANSLATE_SAY, NULL_KEY,statuscode); //send message to error_message.lsl
             state default;
             return;
         }
@@ -500,3 +518,5 @@ state idle
         }
     }
 }
+// Please leave the following line intact to show where the script lives in Subversion:
+// SLOODLE LSL Script Subversion Location: lsl/sloodle_setup_user.lsl 

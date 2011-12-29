@@ -104,8 +104,8 @@ string blogbody = "";
 integer blogbodylength = 0;
 
 // Keys of the pending HTTP requests for a blog entry, and for avatar registration
-key httpblogrequest = NULL_KEY; // = null_key; for OpenSim
-key httpregrequest  = NULL_KEY; // = null_key; for OpenSim
+key httpblogrequest = null_key;
+key httpregrequest = null_key;
 
 // Is the edit in confirmation mode?
 // (i.e. has the entry been made, but is the user editing it to correct something?)
@@ -337,8 +337,9 @@ default
             // Split the message into lines
             list lines = llParseString2List(msg, ["\n"], []);
             integer numlines = llGetListLength(lines);
-            integer i = 0;
-            for (; i < numlines; i++) {
+            // TW inits for Opensim 6 Apr 09
+            integer i;
+            for ( i = 0; i < numlines; i++) {
                 isconfigured = sloodle_handle_command(llList2String(lines, i));
             }
             
@@ -814,4 +815,5 @@ state send
             sloodle_reset();
         }
     }
-}
+}// Please leave the following line intact to show where the script lives in Subversion:
+// SLOODLE LSL Script Subversion Location: toolbar/lsl/sloodle_blog_hud.lsl 

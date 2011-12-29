@@ -115,8 +115,10 @@ state ready
     //{
     //    // Go through each toucher, and notify the choice
     //    integer i = 0;
-    //    for (; i < num; i++) {
+    //    for (i=0; i < num; i++) {
     //        llMessageLinked(LINK_SET, SLOODLE_CHANNEL_OBJECT_CHOICE, SLOODLE_CHOICE_SELECT_OPTION + "|" + (string)myoptionnum, llDetectedKey(i));
     //    }
     //}
 }
+// Please leave the following line intact to show where the script lives in Subversion:
+// SLOODLE LSL Script Subversion Location: mod/choice-1.0/sloodle_choice_option_legend.lsl 

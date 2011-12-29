@@ -43,7 +43,6 @@ integer handle_success(string feedback)
         vector newpos = origpos;
         newpos.z = origpos.z + 2;
         llSetPos(newpos);
-        llSetStatus(STATUS_PHANTOM, FALSE);
         llSleep(5);
         llUnSit(g_sitter);
         llSetPos(origpos);
@@ -54,7 +53,6 @@ integer handle_success(string feedback)
 integer handle_failure(string feedback)
 {
     if (g_sitter != NULL_KEY) {
-        llSetStatus(STATUS_PHANTOM, TRUE);
         llSay(0,feedback);
         llPlaySound("85cda060-b393-48e6-81c8-2cfdfb275351",1);
         llUnSit(g_sitter);
@@ -103,3 +101,5 @@ default
     }
 }
 
+// Please leave the following line intact to show where the script lives in Subversion:
+// SLOODLE LSL Script Subversion Location: mod/quiz_pile_on-1.0/sloodle_quiz_pile_on_choice.lsl 
