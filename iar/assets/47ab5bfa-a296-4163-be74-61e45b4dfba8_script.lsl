@@ -10,7 +10,7 @@ default
     link_message(integer sender_num, integer num, string str, key id) {
         if (num == SLOODLE_CHANNEL_OBJECT_CREATOR_REZZING_STARTED) {
         // TODO: Change color or something
-        //llSetTimerEvent(5.0);
+        //llSetTimerEvent(5.0);         
         } else if (num == SLOODLE_CHANNEL_OBJECT_CREATOR_REZZING_FINISHED) {
           //  llParticleSystem([]);
         } else if (num == SLOODLE_CHANNEL_SET_CONFIGURED) {

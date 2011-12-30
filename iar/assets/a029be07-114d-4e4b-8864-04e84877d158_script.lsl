@@ -173,8 +173,8 @@ state ready {
                //this is where we receive data from from our server
                 list lines;
                 lines = llParseStringKeepNulls( body, ["\n"], [] );
-               llOwnerSay(body);
-                llOwnerSay("Got a request - need to check what it is and probably rez something");
+              // llOwnerSay(body);
+               // llOwnerSay("Got a request - need to check what it is and probably rez something");
 
                 list statusbits =  llParseStringKeepNulls( llList2String(lines,0), ["|"], []);
                 string requestType = llList2String( statusbits, 3 );
@@ -304,3 +304,4 @@ state rezz_and_reply
 
 // Please leave the following line intact to show where the script lives in Subversion:
 // SLOODLE LSL Script Subversion Location: mod/set-1.0/sloodle_shared_media_setup.lsl
+

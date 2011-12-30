@@ -33,13 +33,13 @@ string mybatch = "metagloss";
 // The second of each pair is the translation.
 // Additional comments are sometimes given afterward to aid translations.
 list locstrings = [
-    //  MetaGloss
-    "metagloss:ready", "Sloodle MetaGloss: {{0}}\nChat \"{{1}}\" then a term to search glossary", // Parameters: glossary name, and chat prefix command
-    "metagloss:idle", "Sloodle MetaGloss: {{0}}\nDEACTIVATED: touch me to re-activate", // Parameter: name of glossary
-    "metagloss:checking", "Checking Moodle glossary...",
-    "metagloss:checkok", "Successfully checked glossary: \"{{0}}\"", // Parameter: glossary name
-    "metagloss:searching", "Sloodle MetaGloss: {{0}}\nSearching...", // Parameter: glossary name
-    "metagloss:numdefs", "Number of definitions found for \"{{0}}\": {{1}}" // Parameters: search term, and number of occurrences
+	//  MetaGloss
+	"metagloss:ready", "Sloodle MetaGloss: {{0}}\nChat \"{{1}}\" then a term to search glossary", // Parameters: glossary name, and chat prefix command
+	"metagloss:idle", "Sloodle MetaGloss: {{0}}\nDEACTIVATED: touch me to re-activate", // Parameter: name of glossary
+	"metagloss:checking", "Checking Moodle glossary...",
+	"metagloss:checkok", "Successfully checked glossary: \"{{0}}\"", // Parameter: glossary name
+	"metagloss:searching", "Sloodle MetaGloss: {{0}}\nSearching...", // Parameter: glossary name
+	"metagloss:numdefs", "Number of definitions found for \"{{0}}\": {{1}}" // Parameters: search term, and number of occurrences
 ];
 
 ///// ----------- /////

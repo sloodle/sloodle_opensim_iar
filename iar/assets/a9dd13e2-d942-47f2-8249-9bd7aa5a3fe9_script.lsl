@@ -74,7 +74,7 @@ string MENU_BUTTON_ONLINE = "3";
 string MENU_BUTTON_TAKE_ALL = "4";
 
 // List of button labels ('cos otherwise the compiler runs out of memory!)
-//list teacherbuttons = [MENU_BUTTON_SUBMIT, MENU_BUTTON_ONLINE,  MENU_BUTTON_TAKE_ALL,MENU_BUTTON_CANCEL, MENU_BUTTON_SUMMARY]; // OpenSim chokes on this
+//list teacherbuttons = [MENU_BUTTON_SUBMIT, MENU_BUTTON_ONLINE,  MENU_BUTTON_TAKE_ALL,MENU_BUTTON_CANCEL, MENU_BUTTON_SUMMARY]; // OpenSim chokes on this
 list teacherbuttons = ["1", "2",  "4", "0", "1"];
 //list userbuttons = [MENU_BUTTON_SUMMARY, MENU_BUTTON_SUBMIT,MENU_BUTTON_ONLINE,MENU_BUTTON_CANCEL];
 list userbuttons = ["1", "2",  "3", "0"];

@@ -148,7 +148,7 @@ update_image_display()
     // Make sure we have a valid slide number and valid data
     if (curslidenum < 1 || curslidenum > numslides) return;
     if (curslidetype == "" || curslidesource == "") return;
-    llOwnerSay(curslidetype);
+   // llOwnerSay(curslidetype);
     string showurl;
     if (curslidetype == "image/*") {
         // Wrap in an HTML page to force the scaling to happen right.
@@ -472,4 +472,5 @@ state running
 }
 
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: mod/presenter-2.0/sloodle_mod_presenter-2.0-shared-media.lsl
+// SLOODLE LSL Script Subversion Location: mod/presenter-2.0/sloodle_mod_presenter-shared-media-2.0.lsl
+

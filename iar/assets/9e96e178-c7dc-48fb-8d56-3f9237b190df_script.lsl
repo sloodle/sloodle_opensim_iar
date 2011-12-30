@@ -2,7 +2,7 @@ default
 {// zFire Xue Prim Animator Generator 5.1 Fastest Web Version.
 // Script belongs to Fire Centaur
 // This script goes into prim named: GET HUD
-on_rez(integer r){llResetScript();}
+on_rez(integer r){llResetScript();} 
 link_message(integer s, integer n, string m, key id)
 {integer stat=llGetStatus(1);
 
@@ -29,4 +29,4 @@ llSetPrimitiveParams([6, zfirE,8, <0.0,0.0,-0.00223,1.0> / llGetRootRotation(),9
 if(stat){llSetStatus(1,1);}}}
 
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: mod/scoreboard-1.0/sloodle_get_hud_button_anim.lsl
+// SLOODLE LSL Script Subversion Location: mod/scoreboard-1.0/sloodle_get_hud_button_anim.lsl 

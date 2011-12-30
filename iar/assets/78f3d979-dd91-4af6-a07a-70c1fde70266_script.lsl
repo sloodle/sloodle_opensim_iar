@@ -33,43 +33,43 @@ string mybatch = "assignment"; // Strings for all assignment types
 // The second of each pair is the translation.
 // Additional comments are sometimes given afterward to aid translations.
 list locstrings = [
-    //  Assignment
-    "assignment:checking", "Checking Assignment...",
-    "assignment:connectionfailed", "Failed to connect to assignment. It may be the wrong type, or it may not be visible.",
-    "assignment:lateaccepting", "The assignment deadline has passed, but late submissions are being accepted.",
-    "assignment:late", "Sorry {{0}}. The assignment deadline has passed, and late submissions are not being accepted.", // Parameter: avatar name
-    "assignment:early", "Sorry {{0}}. The assignment is not yet open for submissions.", // Parameter: avatar name
-    "assignment:noresubmit", "Sorry {{0}}. You have already submitted to this assignment, and resubmissions are not being accepted.", // Parameter: avatar name
-    "assignment:nopermission", "Sorry {{0}}. You do not have permission to submit to this assignment.", // Parameter: avatar name
-    "assignment:ready", "Sloodle Assignment Ready:\n{{0}}", // Parameter: name of the assignment
-    
+	//  Assignment
+	"assignment:checking", "Checking Assignment...",
+	"assignment:connectionfailed", "Failed to connect to assignment. It may be the wrong type, or it may not be visible.",
+	"assignment:lateaccepting", "The assignment deadline has passed, but late submissions are being accepted.",
+	"assignment:late", "Sorry {{0}}. The assignment deadline has passed, and late submissions are not being accepted.", // Parameter: avatar name
+	"assignment:early", "Sorry {{0}}. The assignment is not yet open for submissions.", // Parameter: avatar name
+	"assignment:noresubmit", "Sorry {{0}}. You have already submitted to this assignment, and resubmissions are not being accepted.", // Parameter: avatar name
+	"assignment:nopermission", "Sorry {{0}}. You do not have permission to submit to this assignment.", // Parameter: avatar name
+	"assignment:ready", "Sloodle Assignment Ready:\n{{0}}", // Parameter: name of the assignment
+	
     "assignment:primdropmenu", "PrimDrop Menu\n{{0}} = Cancel\n{{1}} = Assignment summary\n{{2}} = Submit\n{{3}} = View Online", // Parameters: button labels
-    //"assignment:primdropteachermenu", "PrimDrop Teacher Menu\n{{0}} = Cancel\n{{1}} = Assignment summary\n{{2}} = Submit\n{{3}} = View Online\n{{4}} = Rez Submission\n{{5}} = Take a Submission\n{{6}} = Take All Objects", // Parameters: button labels
-    "assignment:primdropteachermenu", "PrimDrop Teacher Menu\n{{0}} = Cancel\n{{1}} = Assignment summary\n{{2}} = Submit\n{{3}} = View Online\n{{4}} = Take All Objects", // Parameters: button labels
+	//"assignment:primdropteachermenu", "PrimDrop Teacher Menu\n{{0}} = Cancel\n{{1}} = Assignment summary\n{{2}} = Submit\n{{3}} = View Online\n{{4}} = Rez Submission\n{{5}} = Take a Submission\n{{6}} = Take All Objects", // Parameters: button labels
+	"assignment:primdropteachermenu", "PrimDrop Teacher Menu\n{{0}} = Cancel\n{{1}} = Assignment summary\n{{2}} = Submit\n{{3}} = View Online\n{{4}} = Take All Objects", // Parameters: button labels
     
     "assignment:allgiven", "All assignment submissions have been given to you in a folder called \"{{0}}\".", // Parameter: name of inventory folder
-    "assignment:nosubmissions", "ERROR: No submissions in inventory.",
-    "assignment:checkingpermission", "PLEASE WAIT\nChecking permission for {{0}}.", // Parameter: avatar name
-    "assignment:waitingforsubmission", "Waiting for submission from {{0}}", // Parameter: avatar name
-    "assignment:dropsubmission", "{{0}}, please make your submission by Ctrl+dragging ONE item from your inventory onto this dropbox.", // Parameter: avatar name
-    "assignment:checkinginventory", "PLEASE WAIT\nChecking inventory",
-    "assignment:submittimeout", "Sorry {{0}}. Submission timed-out. Please try again.", // Parameter: avatar name
-    "assignment:receiveditem", "Received item. Checking...",
-    "assignment:checkingitem", "PLEASE WAIT\nChecking item",
-    "assignment:submissionerror", "Error locating submitted item",
-    "assignment:objectsonly", "ERROR: only objects are accepted for this assignment",
-    "assignment:creatoronly", "ERROR: for security, only the item's creator may submit it",
-    "assignment:invalidperms", "ERROR: invald item permissions. Please ensure copy and transfer are enabled.",
-    "assignment:itemok", "Item \"{{0}}\" appears OK. Thank you {{1}}", // Parameters: object name, avatar name
-    "assignment:submitting", "PLEASE WAIT\nSending {{0}}'s submission", // Parameter: avatar name
-    "assignment:submissionok", "Assignment submission successful. Thank you {{0}}.", // Parameter: avatar name
-    "assignment:submissionfailed", "Sorry {{0}}. Assignment submission failed with error code {{1}}", // Parameters: avatar name, status code
-    "assignment:rezmode", "Rez Mode\nIn use by {{0}}", // Parameter: avatar name
-    "assignment:takemode", "Take Mode\nIn use by {{1}}", // Parameter: avatar name
-    "assignment:chatitemname", "{{0}}, chat the name of the submission you require on channel 0 or 1. (Note: names are case-sensitive)", // Parameter: avatar name
-    "assignment:submissionnotfound", "ERROR: submission \"{{0}}\" not found", // Parameter: item name
-    "assignment:rezzing", "Rezzing submission \"{{0}}\"...", // Parameter: item name
-    "assignment:giving", "Giving submission \"{{0}}\"..." // Parameter: item name
+	"assignment:nosubmissions", "ERROR: No submissions in inventory.",
+	"assignment:checkingpermission", "PLEASE WAIT\nChecking permission for {{0}}.", // Parameter: avatar name
+	"assignment:waitingforsubmission", "Waiting for submission from {{0}}", // Parameter: avatar name
+	"assignment:dropsubmission", "{{0}}, please make your submission by Ctrl+dragging ONE item from your inventory onto this dropbox.", // Parameter: avatar name
+	"assignment:checkinginventory", "PLEASE WAIT\nChecking inventory",
+	"assignment:submittimeout", "Sorry {{0}}. Submission timed-out. Please try again.", // Parameter: avatar name
+	"assignment:receiveditem", "Received item. Checking...",
+	"assignment:checkingitem", "PLEASE WAIT\nChecking item",
+	"assignment:submissionerror", "Error locating submitted item",
+	"assignment:objectsonly", "ERROR: only objects are accepted for this assignment",
+	"assignment:creatoronly", "ERROR: for security, only the item's creator may submit it",
+	"assignment:invalidperms", "ERROR: invald item permissions. Please ensure copy and transfer are enabled.",
+	"assignment:itemok", "Item \"{{0}}\" appears OK. Thank you {{1}}", // Parameters: object name, avatar name
+	"assignment:submitting", "PLEASE WAIT\nSending {{0}}'s submission", // Parameter: avatar name
+	"assignment:submissionok", "Assignment submission successful. Thank you {{0}}.", // Parameter: avatar name
+	"assignment:submissionfailed", "Sorry {{0}}. Assignment submission failed with error code {{1}}", // Parameters: avatar name, status code
+	"assignment:rezmode", "Rez Mode\nIn use by {{0}}", // Parameter: avatar name
+	"assignment:takemode", "Take Mode\nIn use by {{1}}", // Parameter: avatar name
+	"assignment:chatitemname", "{{0}}, chat the name of the submission you require on channel 0 or 1. (Note: names are case-sensitive)", // Parameter: avatar name
+	"assignment:submissionnotfound", "ERROR: submission \"{{0}}\" not found", // Parameter: item name
+	"assignment:rezzing", "Rezzing submission \"{{0}}\"...", // Parameter: item name
+	"assignment:giving", "Giving submission \"{{0}}\"..." // Parameter: item name
 ];
 
 ///// ----------- /////

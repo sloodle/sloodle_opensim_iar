@@ -16,7 +16,7 @@
      
 */
       
-        integer SLOODLE_CHANNEL_ERROR_TRANSLATION_REQUEST=-1828374651; 
+        integer SLOODLE_CHANNEL_ERROR_TRANSLATION_REQUEST=-1828374651;
         integer doRepeat = 0; // whether we should run through the questions again when we're done
         integer doDialog = 1; // whether we should ask the questions using dialog rather than chat
         integer doPlaySound = 1; // whether we should play sound
@@ -274,7 +274,7 @@
             link_message(integer sender_num, integer num, string str, key id)
             {
                 if (num == SLOODLE_CHANNEL_QUIZ_START_FOR_AVATAR) {
-                     llOwnerSay("got instruction to start");
+                    
                     sitter = id;
                     // Make sure the given avatar is allowed to use this object
                     if (!sloodle_check_access_use(sitter)) {
@@ -306,7 +306,6 @@
         {
             state_entry()
             {
-                    llOwnerSay("laoding for "+(string)sitter+" from server "+sloodleserverroot);
                  llMessageLinked(LINK_SET, SLOODLE_CHANNEL_QUIZ_STATE_ENTRY_LOAD_QUIZ_FOR_USER, "", sitter);
                 sloodle_translation_request(SLOODLE_TRANSLATE_SAY, [0], "fetchingquiz", [], NULL_KEY, "quiz");
                 // Request the quiz data from Moodle
@@ -582,3 +581,4 @@
 
 // Please leave the following line intact to show where the script lives in Subversion:
 // SLOODLE LSL Script Subversion Location: mod/quiz-1.0/sloodle_mod_quiz-1.0.lsl
+

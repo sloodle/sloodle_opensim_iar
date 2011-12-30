@@ -9,7 +9,7 @@ default
     {
         if (toggle==-1){
             llMessageLinked(LINK_SET,0,"hide",NULL_KEY);
-
+            
             llSetTexture("showhud", ALL_SIDES);
             llSetObjectName("show");
         }else
@@ -23,4 +23,4 @@ default
 }
 
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: mod/scoreboard-1.0/sloodle_admin_hud_show_hide_button.lsl
+// SLOODLE LSL Script Subversion Location: mod/scoreboard-1.0/sloodle_admin_hud_show_hide_button.lsl 

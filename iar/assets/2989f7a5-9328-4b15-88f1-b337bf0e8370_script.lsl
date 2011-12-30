@@ -17,7 +17,7 @@ default
         if (num == SLOODLE_CHANNEL_OBJECT_DIALOG) {
             // What was the message?
             if (str == "do:reset"){
-                   llTriggerSound("powerdown",1.0);
+                   llTriggerSound("powerdown",1.0);              
                 llSetPrimitiveParams(    [ PRIM_GLOW,2,0.0 ] );
                 llSetPrimitiveParams(    [ PRIM_GLOW,0,0.0 ] );
                 }
@@ -33,17 +33,17 @@ default
               llSetPrimitiveParams(    [ PRIM_GLOW,0,0.40 ] );
             }else
             if (str == "turn glow off"){
-                llTriggerSound("powerdown",1.0);
+                llTriggerSound("powerdown",1.0);              
                 llSetPrimitiveParams(    [ PRIM_GLOW,2,0.0 ] );
                 llSetPrimitiveParams(    [ PRIM_GLOW,0,0.0 ] );
             }
 
-        }
-    }
-
+        }  
+    }              
+   
 
 }
 
 
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: mod/set-1.0/sloodle_set_back_glow.lsl
+// SLOODLE LSL Script Subversion Location: mod/set-1.0/sloodle_set_back_glow.lsl 

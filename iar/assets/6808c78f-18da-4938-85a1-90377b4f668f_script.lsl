@@ -17,7 +17,7 @@ default
     touch_start(integer total_number)
     {
         llDialog(llDetectedKey(0), "Please select a Toolbar", ["Toolbar 1.4","Toolbar Lite","Help"], CHAT_CHANNEL);
-
+        
     }
     listen(integer channel, string name, key id, string message) {
         if (channel == CHAT_CHANNEL)

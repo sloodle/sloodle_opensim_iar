@@ -1,10 +1,10 @@
 /*
 * showadminpanel.lsl
 * Part of the Sloodle project (www.sloodle.org)
-*
+* 
 *  Copyright (c) 2011-06 contributors (see below)
 *  Released under the GNU GPL v3
-*
+* 
 * Contributors:
 *  Edmund Edgar
 *  Paul Preibisch
@@ -32,9 +32,9 @@ default
     state_entry()
     {
         llTriggerSound("powerup", 1);
-      llMessageLinked(LINK_ALL_OTHERS, -99, OPEN, NULL_KEY);
+      llMessageLinked(LINK_ALL_OTHERS, -99, OPEN, NULL_KEY); 
     }
-
+    
 
     touch_start(integer total_number)
     {
@@ -46,18 +46,18 @@ default
             llSleep(0.1);
             llSetColor(WHITE, ALL_SIDES);
             llMessageLinked(LINK_ALL_OTHERS, -99, CLOSE, NULL_KEY);
-
+            
             llTriggerSound("powerdown", 1);
             llSetPrimitiveParams(    [ PRIM_GLOW,2,0.20 ] );
             llSetTimerEvent(TIMER);
-
+            
         }else{ //close
             llTriggerSound("SND_INTERFACE_BEEP", 1);
             llSetColor(YELLOW, ALL_SIDES);
             llSleep(0.1);
             llSetColor(WHITE, ALL_SIDES);
             llMessageLinked(LINK_ALL_OTHERS, -99,OPEN, NULL_KEY);
-
+            
             llTriggerSound("powerup", 1);
             llSetPrimitiveParams(    [ PRIM_GLOW,ALL_SIDES,0.0 ] );
         }
@@ -70,18 +70,18 @@ default
             llTriggerSound("powerdown", 1);
             llSetTimerEvent(0);
         }
-
+    
     }
     timer() {
         toggle*=-1;
         llSetTimerEvent(0);
         llMessageLinked(LINK_ALL_OTHERS, -99, CLOSE, NULL_KEY);
         llTriggerSound("powerdown", 1);
-
+        
         llSetPrimitiveParams(    [ PRIM_GLOW,ALL_SIDES,0.0 ] );
     }
 }
 
 
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: mod/scoreboard-1.0/sloodle_show_admin_button.lsl
+// SLOODLE LSL Script Subversion Location: mod/scoreboard-1.0/sloodle_show_admin_button.lsl 

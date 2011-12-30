@@ -8,9 +8,9 @@
 *  httpIn_forwarder.lsl
 *  Copyright:
 *  Paul G. Preibisch (Fire Centaur in SL)
-*  fire@b3dMultiTech.com
+*  fire@b3dMultiTech.com  
 *
-*  Edmund Edgar (Edmund Earp in SL)
+*  Edmund Edgar (Edmund Earp in SL) 
 *  ed@socialminds
 *
 
@@ -28,12 +28,12 @@ integer sloodleobjectaccesslevelctrl = 0; // Who can control this object?
 integer sloodleserveraccesslevel = 0; // Who can use the server resource? (Value passed straight back to Moodle)
 integer sloodleautodeactivate = 1; // Should the WebIntercom auto-deactivate when not in use?
 key listenHandle;
-integer  SLOODLE_CHANNEL_OBJECT_CREATOR_REQUEST_CONFIGURATION_VIA_HTTP_IN_URL =  -1639270089; //Object creator telling itself it wants to rez an object  at a position (specified as key)
+integer  SLOODLE_CHANNEL_OBJECT_CREATOR_REQUEST_CONFIGURATION_VIA_HTTP_IN_URL =  -1639270089; //Object creator telling itself it wants to rez an object  at a position (specified as key) 
 string  SLOODLE_HTTP_IN_REQUEST_LINKER = "/mod/sloodle/classroom/httpin_config_linker.php";
 integer SLOODLE_CHANNEL_OBJECT_DIALOG = -3857343;
 // Configure by receiving a linked message from another script in the object
 // Returns TRUE if the object has all the data it needs
-integer sloodle_handle_command(string str)
+integer sloodle_handle_command(string str) 
 {
     list bits = llParseString2List(str,["|"],[]);
     integer numbits = llGetListLength(bits);
@@ -44,13 +44,13 @@ integer sloodle_handle_command(string str)
     string SLOODLE_EOF="sloodleeof";
     if (numbits > 1) value1 = llList2String(bits,1);
     if (numbits > 2) value2 = llList2String(bits,2);
-
+   
     if (name == "set:sloodleserverroot") sloodleserverroot = value1;
     else if (name == "set:sloodlepwd") {
         // The password may be a single prim password, or a UUID and a password
         if (value2 != "") sloodlepwd = value1 + "|" + value2;
         else sloodlepwd = value1;
-
+        
     } else if (name == "set:sloodlecontrollerid") sloodlecontrollerid = (integer)value1;
     else if (name == "set:sloodlelistentoobjects") sloodlelistentoobjects = (integer)value1;
     else if (name == "set:sloodleobjectaccessleveluse") sloodleobjectaccessleveluse = (integer)value1;
@@ -58,7 +58,7 @@ integer sloodle_handle_command(string str)
     else if (name == "set:sloodleserveraccesslevel") sloodleserveraccesslevel = (integer)value1;
     else if (name == "set:sloodleautodeactivate") sloodleautodeactivate = (integer)value1;
     else if (name == SLOODLE_EOF) eof = TRUE;
-
+    
     return (sloodleserverroot != "" && sloodlepwd != "" && sloodlecontrollerid > 0 );
 }
 // Link message channels
@@ -100,7 +100,7 @@ default
                 isconfigured = sloodle_handle_command(llList2String(lines, i));
        // llOwnerSay("got command "+llList2String(lines,i)+", configured is "+(string)isconfigured);
             }
-
+            
             // If we've got all our data AND reached the end of the configuration data, then move on
             if (eof == TRUE) {
                 if (isconfigured == TRUE) {
@@ -114,57 +114,57 @@ default
                 }
             }
         }
-    }
-
+    }                          
+    
     on_rez(integer start_param) {
         llResetScript();
     }
-
+    
 }
 
 state ready {
 
-
+    
      state_entry()
-    {
+    {        
        // llOwnerSay("Httpin_forwarder ready");
          llListen( SLOODLE_CHANNEL_OBJECT_CREATOR_REQUEST_CONFIGURATION_VIA_HTTP_IN_URL, "", NULL_KEY, ""    );
     }
-
-    listen( integer channel, string name, key id, string str){
+        
+    listen( integer channel, string name, key id, string str){ 
         if (channel != SLOODLE_CHANNEL_OBJECT_CREATOR_REQUEST_CONFIGURATION_VIA_HTTP_IN_URL ) return;
-
+                
       // llOwnerSay("got config request"+str);
-
+        
         if (llGetOwnerKey(id) != llGetOwner()) {
 
       // llOwnerSay("returning: id of getowner is "+(string)llGetOwner()+" but object owner is "+(string)llGetOwnerKey(id));
-
+                            
             return;
         }
 
      //  llOwnerSay("stilll here t"+str);
-
-
+        
+                            
 //send to httpin_config_linker
           string body = "sloodlecontrollerid=" + (string)sloodlecontrollerid;
           body += "&sloodlepwd=" + sloodlepwd;
           body += "&sloodlemoduleid=" + (string)sloodlemoduleid;
           body += "&sloodleobjuuid=" + (string)llGetKey();
           body += "&childobjectuuid=" + (string)id;
-          body += "&httpinurl=" + str;
-//llOwnerSay("requested config with body "+body);
-          httpchat = llHTTPRequest(sloodleserverroot + SLOODLE_HTTP_IN_REQUEST_LINKER, [HTTP_METHOD, "POST", HTTP_MIMETYPE, "application/x-www-form-urlencoded"], body);
+          body += "&httpinurl=" + str;   
+//llOwnerSay("requested config with body "+body); 
+          httpchat = llHTTPRequest(sloodleserverroot + SLOODLE_HTTP_IN_REQUEST_LINKER, [HTTP_METHOD, "POST", HTTP_MIMETYPE, "application/x-www-form-urlencoded"], body);    
    }
     http_response(key request_id, integer status, list metadata, string body) {
         // Split the data up into lines
-        list lines = llParseStringKeepNulls(body, ["\n"], []);
+        list lines = llParseStringKeepNulls(body, ["\n"], []);  
         integer numlines = llGetListLength(lines);
         // Extract all the status fields
         list statusfields = llParseStringKeepNulls( llList2String(lines,0), ["|"], [] );
         // Get the statuscode
         integer statuscode = llList2Integer(statusfields,0);
-
+        
         // Was it an error code?
         if (statuscode<0){
             key objKey = llList2Key(lines,1);
@@ -177,12 +177,12 @@ state ready {
             if (statuscode == -219) {
                 llOwnerSay("Sending configuration to object via HTTP-in URL failed "+llKey2Name(objKey));
             } else {
-                llOwnerSay("Unknown Error: "+(string)statuscode+" "+llKey2Name(objKey));
+                llOwnerSay("Unknown Error: "+(string)statuscode+" "+llKey2Name(objKey)); 
             }
         }
 
-
-    }
+        
+    }      
 
     // allow for reconfiguration without resetting
      link_message( integer sender_num, integer num, string str, key id)
@@ -198,7 +198,7 @@ state ready {
                 isconfigured = sloodle_handle_command(llList2String(lines, i));
       //  llOwnerSay("got command "+llList2String(lines,i)+", configured is "+(string)isconfigured);
             }
-
+            
             // If we've got all our data AND reached the end of the configuration data, then move on
             if (eof == TRUE) {
                 if (isconfigured == TRUE) {
@@ -211,10 +211,10 @@ state ready {
                 }
             }
         }
-    }
+    }                            
     on_rez(integer start_param) {
         llResetScript();
-    }
+    }        
 }
 
 // Please leave the following line intact to show where the script lives in Subversion:
