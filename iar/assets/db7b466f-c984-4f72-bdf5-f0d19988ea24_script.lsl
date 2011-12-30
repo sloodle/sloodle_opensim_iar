@@ -26,7 +26,7 @@
 
 // The index of the channel this script will receive requests on
 // (NOTE: corresponds to indices in the list below)
-integer MY_CHANNEL_INDEX = 0;
+integer MY_CHANNEL_INDEX = 1;
 
 
 // OUTGOING link message numbers for parallel load requests
@@ -66,4 +66,4 @@ default
     }
 }
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: lsl/sloodle_parallel_url_loader_x.lsl 
+// SLOODLE LSL Script Subversion Location: lsl/sloodle_parallel_url_loader_1.lsl 
