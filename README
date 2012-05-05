@@ -10,7 +10,8 @@ cd iar/
 
 # Archive the contents as a file called /tmp/sloodle.iar.
 # NB OpenSim may choke on the archive unless the files are archived in the specified order.
-tar zcvf /tmp/sloodle.iar archive.xml inventory/ assets/
+# Also it prefers the directory/* formulation to avoid spurious errors.
+tar zcvf /tmp/sloodle.iar archive.xml inventory/* assets/*
 
 # In the OpenSim console, you should now be able to load the archive:
 load iar Your Avatar / yourpassw0rd /tmp/sloodle.iar
