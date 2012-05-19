@@ -1,3 +1,6 @@
+//
+// The line above should be left blank to avoid script errors in OpenSim.
+
 // LSL script generated: mod.set-1.0.rezzer_reset_btn.lslp Tue Nov 15 15:49:28 Tokyo Standard Time 2011
 /*
 *  Part of the Sloodle project (www.sloodle.org)
@@ -26,7 +29,7 @@
 *  Paul Preibisch
 *
 *  DESCRIPTION
-*  This script sits inside of the reset button on the rezzer.  When clicked, a countdown is started.
+*  This script sits inside of the reset button.  When clicked, a countdown is started.
 *  The countdown can be stopped, by clicking the button again as a toggle.
 *  If zero is reached by the counter, a linked message is sent to the link_set with a do:reset command
 *
@@ -56,27 +59,37 @@ default {
         toggle = (-1);
         llSetTexture("btn_reset_cancel",FACE);
         llOffsetTexture(0,BTN_RESET_OFFSET,FACE);
+        llRotateTexture(-90*DEG_TO_RAD, ALL_SIDES);
         llSetObjectName("btn:Reset");
         facilitators += llStringTrim(llToLower(llKey2Name(llGetOwner())),STRING_TRIM);
     }
-
    touch_start(integer d) {
-        llTriggerSound("click",1.0);
-        if ((toggle == (-1))) {
-            toggle *= (-1);
-            llOffsetTexture(0,BTN_CANCEL_OFFSET,FACE);
-            llSetObjectName("btn:Cancel");
-            llSetTimerEvent(1);
-        }
-        else  {
-            toggle *= (-1);
-            llSetColor(WHITE,FACE);
-            llOffsetTexture(0,BTN_RESET_OFFSET,FACE);
-            llSetText("",RED,1.0);
-            llSetTimerEvent(0);
-            llSetObjectName("btn:Reset");
-            counter = 0;
-        }
+       integer j;
+       for (j=0;j<d;j++){
+               if (llDetectedKey(j)!=llGetOwner()){
+                   llSay(0,"Sorry, only "+llKey2Name(llGetOwner())+" can reset this device.");
+                   return;
+               }
+                llTriggerSound("click",1.0);
+            if ((toggle == (-1))) {
+                toggle *= (-1);
+                llSetColor(YELLOW,FACE);
+                llOffsetTexture(0,BTN_CANCEL_OFFSET,FACE);
+                llSetObjectName("btn:Cancel");
+                llSetTimerEvent(1);
+            }
+            else  {
+                toggle *= (-1);
+                llSetColor(WHITE,FACE);
+                llOffsetTexture(0,BTN_RESET_OFFSET,FACE);
+                llSetText("",RED,1.0);
+                llSetTimerEvent(0);
+                llSetObjectName("btn:Reset");
+                counter = 0;
+            }
+            llRotateTexture(-90*DEG_TO_RAD, ALL_SIDES);            
+       }
+       
     }
 
   timer() {
@@ -92,6 +105,7 @@ default {
         if ((counter >= TIME_LIMIT)) {
             llSetTimerEvent(0.0);
             llOffsetTexture(0,BTN_RESET_OFFSET,FACE);
+            llRotateTexture(-90*DEG_TO_RAD, ALL_SIDES);            
             llSetObjectName("btn:Reset");
             toggle *= (-1);
             llSetText("",RED,1.0);
@@ -105,6 +119,7 @@ default {
   changed(integer change) {
         if ((change == CHANGED_INVENTORY)) {
             llOffsetTexture(0,BTN_RESET_OFFSET,FACE);
+            llRotateTexture(-90*DEG_TO_RAD, ALL_SIDES);            
             llSetObjectName("btn:Reset");
             llResetScript();
         }
@@ -113,4 +128,3 @@ default {
 
 // Please leave the following line intact to show where the script lives in Subversion:
 // SLOODLE LSL Script Subversion Location: mod/set-1.0/rezzer_reset_btn.lsl 
-

@@ -1,3 +1,6 @@
+//
+// The line above should be left blank to avoid script errors in OpenSim.
+
 /*********************************************
 *  Copyright (c) 2009 - 2011 various contributors (see below)
 *  Released under the GNU GPL 3.0
@@ -13,6 +16,8 @@
 *  This script will get an httpin url, and shout it out to the rezzer.  It will then wait to receive its config via httpin, and send it as a linked message to all other scripts
 */
 
+integer SLOODLE_CHANNEL_HTTP_RESPONSE = -1639260101;  // Tells the sloodle_rezzer_object script to send the contents as an http-in response, to the key specified as key, which should be waiting for a response.
+
 integer SLOODLE_CHANNEL_OBJECT_DIALOG = -3857343;//configuration channel
 integer SLOODLE_CHANNEL_OBJECT_CREATOR_REQUEST_CONFIGURATION_VIA_HTTP_IN_URL = -1639270089; //Object creator telling itself it wants to rez an object at a position (specified as key)
 
@@ -20,8 +25,7 @@ string SLOODLE_HTTP_IN_REQUEST_LINKER = "/mod/sloodle/classroom/httpin_config_li
 string SLOODLE_HTTP_IN_UPDATE_LINKER = "/mod/sloodle/classroom/httpin_url_update_linker.php";
 string SLOODLE_PING_LINKER = "/mod/sloodle/classroom/active_object_ping_linker.php";
 
-float PING_DELAY = 3600.0; // Number of seconds between pings. NB This is assumed to by 3600 by Active Object, which will stop trying to send http-in messages to objects older than that.
-float PING_RETRY_DELAY = 600.0; // Number of seconds to wait before retrying a failed ping.
+float refreshseconds = 3600.0; // Number of seconds between pings. Some jitter will sometimes be added to prevent killing the server this number of seconds after a sim full of objects starts up. We start with a fairly slow default, but this can be altered by the server when we ping or send out config.
 
 string SLOODLE_EOF = "sloodleeof";
 
@@ -41,6 +45,7 @@ string persistent_config;
 
 integer is_pinging = 0;
 integer is_ping_retry = 0;
+key current_ping_http = NULL_KEY;
 
 move_to_layout_position() {
     
@@ -79,6 +84,7 @@ integer sloodle_handle_command(string str, integer do_persist)
             rezzer_uuid = llList2Key(bits,3);
             has_position = 1;
         } else if (name == "do:derez") {
+            llSleep(2); // This is needed to give the script a chance to finish making the http response.
             llDie();
         } else if ( (name=="do:requestconfig") || (name=="do:reset") ) {           
             string this_script = llGetScriptName();                
@@ -111,7 +117,7 @@ integer sloodle_handle_command(string str, integer do_persist)
     return isconfigured;
 }
 
-sloodle_tell_other_scripts(string msg, integer channel)
+sloodle_tell_other_scripts(string msg, integer channel, key respond_key)
 {    
     integer status_code;
     if (channel == 0) {
@@ -136,7 +142,7 @@ sloodle_tell_other_scripts(string msg, integer channel)
         msg = msg + "\n"+SLOODLE_EOF;
     }
    // llOwnerSay("sending msg with status code "+(string)status_code+": "+msg);
-    llMessageLinked(LINK_SET, status_code, msg, NULL_KEY);
+    llMessageLinked(LINK_SET, status_code, msg, respond_key);
     
 }
 
@@ -272,8 +278,23 @@ default{
                     return;
                 }                
                 
-                llHTTPResponse(id, 200, "OK");                 
-
+                // If we don't expect a response from the script that handles this, respond now to say we got the message.
+                integer expect_response = 0;
+                if (llGetListLength(header_line) >= 12) {
+                    if (llList2Integer(header_line, 11) == 1) {
+                        expect_response = 1;
+                    }
+                }
+                if (expect_response != 1) {
+                    llHTTPResponse(id, 200, "OK"); 
+                }
+                
+                if (llGetListLength(header_line) >= 13) {
+                    if (llList2Float(header_line,12) > 0) {
+                        refreshseconds = llList2Float(header_line,12);
+                    }
+                }                     
+                                
                 string descriptor = "";
                 if (llGetListLength(header_line) > 1) descriptor = llList2String(header_line, 3);
                 integer do_persist = 0;   
@@ -296,13 +317,13 @@ default{
                 integer numlines = llGetListLength(lines);
                 integer i = 1;          
                 for (i=1; i < numlines; i++) {
-                    isconfigured = sloodle_handle_command(llList2String(lines, i), do_persist);                                 
+                    isconfigured = sloodle_handle_command(llList2String(lines, i), do_persist);                      
                 }                                                         
                                 
-                sloodle_tell_other_scripts(body,0);
+                sloodle_tell_other_scripts(body,0, id);
                 // This is the end of the configuration data
                 llSleep(0.2);
-                sloodle_tell_other_scripts(SLOODLE_EOF, 0);
+                sloodle_tell_other_scripts(SLOODLE_EOF, 0, id);
                 
                 if (isconfigured == 1) {   
                     if (has_position == 1) {                                 
@@ -343,7 +364,7 @@ state ready {
             sloodlecontrollerid = "";
             sloodlepwd = "";
             persistent_config = "";
-            llSleep(2.0); // Give the rezzer time to register us. Seems to be an issue on OpenSim, where everything is faster than SL.
+            // llSleep(2.0); // Give the rezzer time to register us. Seems to be an issue on OpenSim, where everything is faster than SL.
         }
                 
         state default;        
@@ -354,10 +375,10 @@ state ready {
     {        
         // llOwnerSay("ready state");
         // llOwnerSay(persistent_config);
-        llListen(232323, "", rezzer_uuid, "");   
+        if (rezzer_uuid != NULL_KEY) {
+            llListen(232323, "", rezzer_uuid, "");   
+        }
     
-        // Ping the server at a random interval of the normal ping delay, so the server doesn't get hit by all objects at once.
-        llSetTimerEvent( llFrand(PING_DELAY) ); 
     } 
 
     listen(integer channel, string name, key id, string message) {
@@ -408,23 +429,36 @@ state ready {
         body += "&sloodlepwd=" + sloodlepwd;
         body += "&sloodleobjuuid=" + (string)llGetKey();
         is_pinging = 1;
-        llHTTPRequest(sloodleserverroot + SLOODLE_PING_LINKER, [HTTP_METHOD, "POST", HTTP_MIMETYPE, "application/x-www-form-urlencoded"], body);
+        current_ping_http = llHTTPRequest(sloodleserverroot + SLOODLE_PING_LINKER, [HTTP_METHOD, "POST", HTTP_MIMETYPE, "application/x-www-form-urlencoded"], body);
     }
 
     http_response( key request_id, integer status, list metadata, string body ){ 
+
+        if (request_id != current_ping_http) {
+            return;
+        }    
+
+        list lines = llParseStringKeepNulls(body, ["\n"], []);
+        list statusfields = llParseStringKeepNulls( llList2String(lines,0), ["|"], [] );
+        
+        if (llGetListLength(statusfields) >= 12) {
+            if (llList2Float(statusfields,12) > 0) {
+                refreshseconds = llList2Float(statusfields,12);
+            }
+        }   
 
         is_pinging = 0;
         if (status == 200) {
             if (is_ping_retry == 1) {
                 // Reintroduce the randomness we may have lost if the server went down.
-                llSetTimerEvent(llFrand(PING_DELAY));
+                llSetTimerEvent(llFrand(refreshseconds));
             } else {
-                llSetTimerEvent(PING_DELAY);
+                llSetTimerEvent(refreshseconds);
             }
             is_ping_retry = 0;
         } else {
             is_ping_retry = 1;
-            llSetTimerEvent(PING_RETRY_DELAY);
+            llSetTimerEvent(llFrand(refreshseconds));
         } 
 
     }
@@ -470,9 +504,18 @@ state ready {
                     llHTTPResponse(id, 200, reply);
                     return;
                 }
-           
+              
+                 // If we don't expect a response from the script that handles this, respond now to say we got the message.
+                integer expect_response = 0;
+                if (llGetListLength(header_line) >= 12) {
+                    if (llList2Integer(header_line, 11) == 1) {
+                        expect_response = 1;
+                    }
+                };
+                if (expect_response != 1) {
+                    llHTTPResponse(id, 200, "OK"); 
+                }
                 
-                llHTTPResponse(id, 200, "OK");                 
                 string status_descriptor = "";
                 string request_descriptor = "";                             
                 integer do_persist = 0;
@@ -494,15 +537,17 @@ state ready {
                     }
                 } 
                                 
-                sloodle_tell_other_scripts(body, 0);
+                sloodle_tell_other_scripts(body, 0, id);
                 // This is the end of the configuration data
                 llSleep(0.2);
-                sloodle_tell_other_scripts(SLOODLE_EOF, 0);
+                sloodle_tell_other_scripts(SLOODLE_EOF, 0, id);
+                
+                // Start pinging, with jitter                
+                llSetTimerEvent(llFrand(refreshseconds));
                                                                        
-          }//endif
+          }//endif 
      }//http
 
-    // TODO: Need a changed event for region etc to get a new url
     changed(integer change) {
         if ( (change & CHANGED_REGION_START) || (change & CHANGED_REGION ) ) {
             //Request new URL
@@ -518,7 +563,10 @@ state ready {
         // Check the channel
         if (num == SLOODLE_CHANNEL_OBJECT_DIALOG) {
             sloodle_handle_command(str, 0);
+        } else if (num == SLOODLE_CHANNEL_HTTP_RESPONSE) {
+            llHTTPResponse(id, 200, str); 
         }
+
     }
 }
         
@@ -532,4 +580,3 @@ state reinitialize {
 
 // Please leave the following line intact to show where the script lives in Subversion:
 // SLOODLE LSL Script Subversion Location: mod/set-1.0/sloodle_rezzer_object.lsl
-

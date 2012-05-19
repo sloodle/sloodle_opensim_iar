@@ -1,3 +1,6 @@
+//
+// The line above should be left blank to avoid script errors in OpenSim.
+
 // Sloodle Presenter (for Sloodle 0.4.1)
 // Lets the educator display a presentation of images. videos and webpages hosted on the web.
 // Part of the Sloodle project (www.sloodle.org)
@@ -243,7 +246,7 @@ default{
     }
  state_entry() {
          myOwnerKey = llGetOwner();
-         llOwnerSay("Owner set to: " + llKey2Name(llGetOwner())+ " with UUID: " + (string)llGetOwner());
+        // llOwnerSay("Owner set to: " + llKey2Name(llGetOwner())+ " with UUID: " + (string)llGetOwner());
          reset=FALSE; //used in the last state - if someone deletes the sloodle_presenter_texture, we set a timer, so need to distinguish in timer event, what to do - ie: was the timer set because the texture was deleted? then set reset to TRUE. 
          state initialize; 
          
@@ -255,7 +258,7 @@ state initialize
 {
 
     on_rez(integer start_param) {  
-        llOwnerSay("Reseting...");  
+       // llOwnerSay("Reseting...");  
         myOwnerKey = llGetOwner();
         llResetScript();
                   
@@ -473,4 +476,3 @@ state running
 
 // Please leave the following line intact to show where the script lives in Subversion:
 // SLOODLE LSL Script Subversion Location: mod/presenter-2.0/sloodle_mod_presenter-shared-media-2.0.lsl
-
