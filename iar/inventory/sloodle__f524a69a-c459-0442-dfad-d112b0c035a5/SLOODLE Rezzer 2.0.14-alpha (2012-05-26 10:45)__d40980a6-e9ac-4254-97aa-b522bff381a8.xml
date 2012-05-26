@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-16"?>
+<InventoryItem>
+  <Name>SLOODLE Rezzer 2.0.14-alpha (2012-05-26 10:45)</Name>
+  <ID>d40980a6-e9ac-4254-97aa-b522bff381a8</ID>
+  <InvType>6</InvType>
+  <CreatorUUID>ospa:n=Avatar Classroom</CreatorUUID>
+  <CreationDate>1337999350</CreationDate>
+  <Owner>f3e47e81-3983-4c3a-869d-7a9a4b62aa94</Owner>
+  <Description>Put the URL of your Moodle site here</Description>
+  <AssetType>6</AssetType>
+  <AssetID>4aecfaa4-8c61-4f5b-9d37-e44a1be53493</AssetID>
+  <SaleType>0</SaleType>
+  <SalePrice>0</SalePrice>
+  <BasePermissions>581632</BasePermissions>
+  <CurrentPermissions>581632</CurrentPermissions>
+  <EveryOnePermissions>0</EveryOnePermissions>
+  <NextPermissions>581632</NextPermissions>
+  <Flags>0</Flags>
+  <GroupID>00000000-0000-0000-0000-000000000000</GroupID>
+  <GroupOwned>False</GroupOwned>
+</InventoryItem>
