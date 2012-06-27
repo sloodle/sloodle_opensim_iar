@@ -498,4 +498,4 @@ state ready
 }
 
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: mod/choice-1.0/sloodle_mod_choice-1.0.lsl 
+// SLOODLE LSL Script Subversion Location: mod/choice-1.0/objects/default/assets/sloodle_mod_choice-1.0.lslp 

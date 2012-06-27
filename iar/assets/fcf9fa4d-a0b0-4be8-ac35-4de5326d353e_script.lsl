@@ -82,4 +82,4 @@ default
     }
 }
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: lsl/sloodle_email_login_details.lsl 
+// SLOODLE LSL Script Subversion Location: assets/sloodle_email_login_details.lslp 

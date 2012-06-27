@@ -68,4 +68,4 @@ default
     }
 }
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: lsl/sloodle_multi_url_loader.lsl 
+// SLOODLE LSL Script Subversion Location: assets/misc/sloodle_multi_url_loader.lslp 

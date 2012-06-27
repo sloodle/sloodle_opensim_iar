@@ -49,4 +49,4 @@ default
 
 
 // Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: mod/set-1.0/sloodle_set_back_glow.lsl 
+// SLOODLE LSL Script Subversion Location: mod/set-1.0/objects/default/assets/sloodle_set_back_glow.lslp 
