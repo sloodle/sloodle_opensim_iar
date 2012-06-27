@@ -194,6 +194,6 @@ state ready {
     } 
 }
 
-// Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: mod/set-1.0/objects/default/assets/sloodle_rez_status_confirmer.lslp
+// Please leave the following line intact to show where the script lives in Git:
+// SLOODLE LSL Script Git Location: mod/set-1.0/objects/default/assets/sloodle_rez_status_confirmer.lslp
 

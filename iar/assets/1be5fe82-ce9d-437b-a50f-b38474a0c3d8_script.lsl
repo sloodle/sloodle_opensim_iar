@@ -139,5 +139,5 @@ state off
 }
 
 
-// Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: mod/tracker-1.0/objects/scanner/assets/sloodle_tracker_scanner.lslp
+// Please leave the following line intact to show where the script lives in Git:
+// SLOODLE LSL Script Git Location: mod/tracker-1.0/objects/scanner/assets/sloodle_tracker_scanner.lslp

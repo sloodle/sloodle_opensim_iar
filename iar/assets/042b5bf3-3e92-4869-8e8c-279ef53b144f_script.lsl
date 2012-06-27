@@ -158,5 +158,5 @@ default
         }
     }
 }
-// Please leave the following line intact to show where the script lives in Subversion:
-// SLOODLE LSL Script Subversion Location: assets/sloodle_setup_notecard.lslp 
+// Please leave the following line intact to show where the script lives in Git:
+// SLOODLE LSL Script Git Location: assets/sloodle_setup_notecard.lslp 
