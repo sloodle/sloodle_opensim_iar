@@ -1,3 +1,6 @@
+//
+// The line above should be left blank to avoid script errors in OpenSim.
+
 //////////
 //
 // Sloodle Toolbar menu script (v2.0)
@@ -10,7 +13,6 @@
 // Contributors:
 //  - <unknown>
 //  - Peter R. Bloomfield
-//  - Fumi.Iseki for OpenSim
 //
 //////////
 //
@@ -40,7 +42,10 @@ string RESTORE_BUTTON = "restore_button";
 string HELP_BUTTON = "help_button";
 
 // Name of the help notecard
-string HELP_NOTECARD = "Sloodle Lite Toolbar Help";
+string HELP_NOTECARD = "Sloodle Toolbar Help";
+
+// Is the toolbar flipped over? (i.e. is it on gestures?)
+integer flipped = 0;
 // Is the toolbar currently hidden ('minimized')?
 integer hidden = 0;
 // Sound to be played when the toolbar is touched
@@ -103,12 +108,12 @@ default
         if(touchSound != ""){
             llPreloadSound(touchSound); 
         }
-        hidden = 0;
-        llSetLocalRot(ZERO_ROTATION);
+
     }
     
     on_rez(integer param)
     {
+        llSetRot(ZERO_ROTATION);
         llResetScript();
     }
     
@@ -127,7 +132,8 @@ default
             // If the restore button was pressed, then unhide it. Otherwise, ignore the touch.
             if (name == RESTORE_BUTTON) {
                 hidden = 0;
-                llSetLocalRot(ZERO_ROTATION);
+                if (flipped) llSetRot(llEuler2Rot(<0,PI,0>));
+                else llSetRot(ZERO_ROTATION);
             }
             return;
         }
@@ -135,7 +141,7 @@ default
         if (name == MINIMIZE_BUTTON) {
             // Hide it
             hidden = 1;
-            llSetLocalRot(llEuler2Rot(<0,PI * 0.5,0>));
+            llSetRot(llEuler2Rot(<0,PI * 0.5,0>));
             return;
         }
 
@@ -143,7 +149,21 @@ default
         if (hidden == 1) return;
         
         // So what else was touched?
-        if (name == HELP_BUTTON) {
+        if (name == llGetObjectName()) {
+            // The toggle tabs were touched
+            // Toggle the rotation between gestures and blog
+            if (!flipped)
+            {
+                llSetRot(llEuler2Rot(<0,PI,0>));
+                flipped = 1;
+            }
+            else
+            {
+                llSetRot(ZERO_ROTATION);
+                flipped = 0;
+            }
+            return;
+        } else if (name == HELP_BUTTON) {
             // The help button was touched - give the help notecard
             if (llGetInventoryType(HELP_NOTECARD) == INVENTORY_NOTECARD) {
                 llGiveInventory(llDetectedKey(0), HELP_NOTECARD);
@@ -168,6 +188,7 @@ default
             if (playing < 0) {
                 // Play the animation once and echo the gesture to chat
                 llStartAnimation(animname);
+                llSay(0, avname + " " + animtext);
                 sloodle_translation_request(SLOODLE_TRANSLATE_SAY, [0], name, [avname], NULL_KEY, "toolbar");
                 
             } else if (playing == 0) {
@@ -192,4 +213,4 @@ default
 }
 
 // Please leave the following line intact to show where the script lives in Git:
-// SLOODLE LSL Script Git Location: mod/toolbar_giver-1.0/objects/toolbar/assets/toolbar-menu.lslp.os
+// SLOODLE LSL Script Git Location: mod/toolbar_giver-1.0/objects/toolbar/assets/toolbar-menu.lslp 
